@@ -12,9 +12,7 @@ import { MOCK_CATEGORIES, MOCK_PROVIDERS } from "@/data/mock";
 
 export default function LandingPage() {
   const featured = MOCK_PROVIDERS.filter((p) => p.is_featured).slice(0, 3);
-  <div className="bg-red-500 text-white p-10">
-  TEST
-</div>
+ 
 
   return (
     

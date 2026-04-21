@@ -1,0 +1,92 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: booking_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE:      booking_platform
+      MYSQL_USER:          appuser
+      MYSQL_PASSWORD:      apppassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./migrations/init.sql:/docker-entrypoint-initdb.d/01_init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: booking_backend
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV:    development
+      PORT:        3001
+      DB_HOST:     mysql
+      DB_PORT:     3306
+      DB_NAME:     booking_platform
+      DB_USER:     appuser
+      DB_PASS:     apppassword
+      DB_POOL_MIN: 2
+      DB_POOL_MAX: 10
+      JWT_SECRET:          dev_jwt_secret_min_32_chars_long_here
+      JWT_EXPIRES_IN:      15m
+      JWT_REFRESH_SECRET:  dev_refresh_secret_min_32_chars_here
+      JWT_REFRESH_EXPIRES_IN: 7d
+      CORS_ORIGIN: http://localhost:3000
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./src:/app/src       # hot-reload in development
+      - ./logs:/app/logs
+
+volumes:
+  mysql_data:
+    driver: local
+```
+```
+# .gitignore
+
+# Environment — NEVER commit secrets
+.env
+.env.local
+.env.production
+
+# Dependencies
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Build output
+dist/
+build/
+
+# Test coverage
+coverage/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Editor config
+.vscode/
+.idea/
+*.swp
+
+# MySQL data (if running locally without Docker)
+mysql-data/

@@ -1,0 +1,340 @@
+[31merror[39m: [SERVER] Failed to start server {"error":"Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info","service":"booking-platform-api","stack":"TypeError: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info\n    at name (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\path-to-regexp\\dist\\index.js:96:19)\n    at parse (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\path-to-regexp\\dist\\index.js:113:68)\n    at pathToRegexp (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\path-to-regexp\\dist\\index.js:267:58)\n    at Object.match (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\path-to-regexp\\dist\\index.js:237:30)\n    at matcher (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:86:23)\n    at new Layer (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:93:62)\n    at Function.use (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:398:19)\n    at Function.<anonymous> (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\express\\lib\\application.js:222:21)\n    at Array.forEach (<anonymous>)\n    at Function.use (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\express\\lib\\application.js:219:7)"}
+[31merror[39m: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "phone"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "regex",
+    "pattern": "/[A-Z]/",
+    "path": [
+      "body",
+      "password"
+    ],
+    "message": "Password must contain at least one uppercase letter"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "full_name"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "city"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  }
+] {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"ZodError: [\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"phone\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"origin\": \"string\",\n    \"code\": \"invalid_format\",\n    \"format\": \"regex\",\n    \"pattern\": \"/[A-Z]/\",\n    \"path\": [\n      \"body\",\n      \"password\"\n    ],\n    \"message\": \"Password must contain at least one uppercase letter\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"full_name\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"city\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  }\n]\n    at file:///C:/Users/gayat/SLSBP/backend/src/middleware/validate.js:10:29\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "phone"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "regex",
+    "pattern": "/[A-Z]/",
+    "path": [
+      "body",
+      "password"
+    ],
+    "message": "Password must contain at least one uppercase letter"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "full_name"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "city"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  }
+] {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"ZodError: [\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"phone\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"origin\": \"string\",\n    \"code\": \"invalid_format\",\n    \"format\": \"regex\",\n    \"pattern\": \"/[A-Z]/\",\n    \"path\": [\n      \"body\",\n      \"password\"\n    ],\n    \"message\": \"Password must contain at least one uppercase letter\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"full_name\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"city\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  }\n]\n    at file:///C:/Users/gayat/SLSBP/backend/src/middleware/validate.js:10:29\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "phone"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "regex",
+    "pattern": "/[A-Z]/",
+    "path": [
+      "body",
+      "password"
+    ],
+    "message": "Password must contain at least one uppercase letter"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "full_name"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "city"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  }
+] {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"ZodError: [\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"phone\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"origin\": \"string\",\n    \"code\": \"invalid_format\",\n    \"format\": \"regex\",\n    \"pattern\": \"/[A-Z]/\",\n    \"path\": [\n      \"body\",\n      \"password\"\n    ],\n    \"message\": \"Password must contain at least one uppercase letter\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"full_name\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"city\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  }\n]\n    at file:///C:/Users/gayat/SLSBP/backend/src/middleware/validate.js:10:29\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "customer",
+      "provider"
+    ],
+    "path": [
+      "body",
+      "role"
+    ],
+    "message": "Invalid option: expected one of \"customer\"|\"provider\""
+  }
+] {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"ZodError: [\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"customer\",\n      \"provider\"\n    ],\n    \"path\": [\n      \"body\",\n      \"role\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"customer\\\"|\\\"provider\\\"\"\n  }\n]\n    at file:///C:/Users/gayat/SLSBP/backend/src/middleware/validate.js:10:29\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "customer",
+      "provider"
+    ],
+    "path": [
+      "body",
+      "role"
+    ],
+    "message": "Invalid option: expected one of \"customer\"|\"provider\""
+  }
+] {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"ZodError: [\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"customer\",\n      \"provider\"\n    ],\n    \"path\": [\n      \"body\",\n      \"role\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"customer\\\"|\\\"provider\\\"\"\n  }\n]\n    at file:///C:/Users/gayat/SLSBP/backend/src/middleware/validate.js:10:29\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: Cannot set property query of #<IncomingMessage> which has only a getter {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"TypeError: Cannot set property query of #<IncomingMessage> which has only a getter\n    at file:///C:/Users/gayat/SLSBP/backend/src/middleware/validate.js:18:18\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: Cannot set property query of #<IncomingMessage> which has only a getter {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"TypeError: Cannot set property query of #<IncomingMessage> which has only a getter\n    at file:///C:/Users/gayat/SLSBP/backend/src/middleware/validate.js:18:18\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: Cannot set property query of #<IncomingMessage> which has only a getter {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"TypeError: Cannot set property query of #<IncomingMessage> which has only a getter\n    at file:///C:/Users/gayat/SLSBP/backend/src/middleware/validate.js:18:18\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: Cannot set property query of #<IncomingMessage> which has only a getter {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"TypeError: Cannot set property query of #<IncomingMessage> which has only a getter\n    at file:///C:/Users/gayat/SLSBP/backend/src/middleware/validate.js:18:18\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: No authentication token provided {"code":"UNAUTHORIZED","isOperational":true,"request":{"ip":"::1","method":"POST","url":"/api/v1/providers/me/services"},"service":"booking-platform-api","stack":"Error: No authentication token provided\n    at AppError.unauthorized (file:///C:/Users/gayat/SLSBP/backend/src/utils/AppError.js:49:3)\n    at file:///C:/Users/gayat/SLSBP/backend/src/middleware/auth.js:16:20\n    at file:///C:/Users/gayat/SLSBP/backend/src/utils/asyncWrapper.js:10:19\n    at Layer.handleRequest (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:342:13)\n    at C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:297:9\n    at processParams (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)\n    at router (C:\\Users\\gayat\\SLSBP\\backend\\node_modules\\router\\index.js:60:12)","statusCode":401}
+[31merror[39m: Invalid email or password {"code":"UNAUTHORIZED","isOperational":true,"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/login"},"service":"booking-platform-api","stack":"Error: Invalid email or password\n    at AppError.unauthorized (file:///C:/Users/gayat/SLSBP/backend/src/utils/AppError.js:49:3)\n    at Object.login (file:///C:/Users/gayat/SLSBP/backend/src/modules/auth/auth.service.js:77:40)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/gayat/SLSBP/backend/src/modules/auth/auth.controller.js:12:18","statusCode":401}
+[31merror[39m: This time slot is not available for booking {"code":"SLOT_UNAVAILABLE","isOperational":true,"request":{"ip":"::1","method":"POST","url":"/api/v1/bookings","userId":1},"service":"booking-platform-api","stack":"Error: This time slot is not available for booking\n    at file:///C:/Users/gayat/SLSBP/backend/src/modules/bookings/booking.service.js:59:13\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async withTransaction (file:///C:/Users/gayat/SLSBP/backend/src/config/db.js:95:22)\n    at async Object.createBooking (file:///C:/Users/gayat/SLSBP/backend/src/modules/bookings/booking.service.js:48:18)\n    at async file:///C:/Users/gayat/SLSBP/backend/src/modules/bookings/booking.controller.js:10:18","statusCode":409}
+[31merror[39m: This time slot is not available for booking {"code":"SLOT_UNAVAILABLE","isOperational":true,"request":{"ip":"::1","method":"POST","url":"/api/v1/bookings","userId":1},"service":"booking-platform-api","stack":"Error: This time slot is not available for booking\n    at file:///C:/Users/gayat/SLSBP/backend/src/modules/bookings/booking.service.js:59:13\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async withTransaction (file:///C:/Users/gayat/SLSBP/backend/src/config/db.js:95:22)\n    at async Object.createBooking (file:///C:/Users/gayat/SLSBP/backend/src/modules/bookings/booking.service.js:48:18)\n    at async file:///C:/Users/gayat/SLSBP/backend/src/modules/bookings/booking.controller.js:10:18","statusCode":409}
+[31merror[39m: You can only review a completed booking {"code":"BOOKING_NOT_COMPLETED","isOperational":true,"request":{"ip":"::1","method":"POST","url":"/api/v1/reviews","userId":1},"service":"booking-platform-api","stack":"Error: You can only review a completed booking\n    at Object.createReview (file:///C:/Users/gayat/SLSBP/backend/src/modules/reviews/review.service.js:22:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/gayat/SLSBP/backend/src/modules/reviews/review.controller.js:7:16","statusCode":422}
+[31merror[39m: An account with this email already exists {"code":"EMAIL_TAKEN","isOperational":true,"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"Error: An account with this email already exists\n    at AppError.conflict (file:///C:/Users/gayat/SLSBP/backend/src/utils/AppError.js:60:3)\n    at Object.register (file:///C:/Users/gayat/SLSBP/backend/src/modules/auth/auth.service.js:40:20)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/gayat/SLSBP/backend/src/modules/auth/auth.controller.js:7:18","statusCode":409}
+[31merror[39m: An account with this email already exists {"code":"EMAIL_TAKEN","isOperational":true,"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"Error: An account with this email already exists\n    at AppError.conflict (file:///C:/Users/gayat/SLSBP/backend/src/utils/AppError.js:60:3)\n    at Object.register (file:///C:/Users/gayat/SLSBP/backend/src/modules/auth/auth.service.js:40:20)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/gayat/SLSBP/backend/src/modules/auth/auth.controller.js:7:18","statusCode":409}
+[31merror[39m: [DB] Failed to establish connection pool {"error":"connect ECONNREFUSED ::1:3306","service":"booking-platform-api"}
+[31merror[39m: [DB] Failed to establish connection pool {"error":"connect ECONNREFUSED ::1:3306","service":"booking-platform-api"}
+[31merror[39m: [DB] Failed to establish connection pool {"error":"connect ECONNREFUSED ::1:3306","service":"booking-platform-api"}
+[31merror[39m: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "phone"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "regex",
+    "pattern": "/[A-Z]/",
+    "path": [
+      "body",
+      "password"
+    ],
+    "message": "Password must contain at least one uppercase letter"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "full_name"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "city"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  }
+] {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"ZodError: [\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"phone\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"origin\": \"string\",\n    \"code\": \"invalid_format\",\n    \"format\": \"regex\",\n    \"pattern\": \"/[A-Z]/\",\n    \"path\": [\n      \"body\",\n      \"password\"\n    ],\n    \"message\": \"Password must contain at least one uppercase letter\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"full_name\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"city\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  }\n]\n    at file:///C:/Users/gayat/Downloads/SLSBP/backend/src/middleware/validate.js:6:29\n    at Layer.handleRequest (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "phone"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "regex",
+    "pattern": "/[A-Z]/",
+    "path": [
+      "body",
+      "password"
+    ],
+    "message": "Password must contain at least one uppercase letter"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "full_name"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "city"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  }
+] {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"ZodError: [\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"phone\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"origin\": \"string\",\n    \"code\": \"invalid_format\",\n    \"format\": \"regex\",\n    \"pattern\": \"/[A-Z]/\",\n    \"path\": [\n      \"body\",\n      \"password\"\n    ],\n    \"message\": \"Password must contain at least one uppercase letter\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"full_name\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"city\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  }\n]\n    at file:///C:/Users/gayat/Downloads/SLSBP/backend/src/middleware/validate.js:6:29\n    at Layer.handleRequest (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "phone"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "regex",
+    "pattern": "/[A-Z]/",
+    "path": [
+      "body",
+      "password"
+    ],
+    "message": "Password must contain at least one uppercase letter"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "full_name"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "city"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  }
+] {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"ZodError: [\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"phone\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"origin\": \"string\",\n    \"code\": \"invalid_format\",\n    \"format\": \"regex\",\n    \"pattern\": \"/[A-Z]/\",\n    \"path\": [\n      \"body\",\n      \"password\"\n    ],\n    \"message\": \"Password must contain at least one uppercase letter\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"full_name\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"city\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  }\n]\n    at file:///C:/Users/gayat/Downloads/SLSBP/backend/src/middleware/validate.js:6:29\n    at Layer.handleRequest (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: [
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "phone"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "regex",
+    "pattern": "/[A-Z]/",
+    "path": [
+      "body",
+      "password"
+    ],
+    "message": "Password must contain at least one uppercase letter"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "full_name"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  },
+  {
+    "expected": "string",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "city"
+    ],
+    "message": "Invalid input: expected string, received undefined"
+  }
+] {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"ZodError: [\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"phone\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"origin\": \"string\",\n    \"code\": \"invalid_format\",\n    \"format\": \"regex\",\n    \"pattern\": \"/[A-Z]/\",\n    \"path\": [\n      \"body\",\n      \"password\"\n    ],\n    \"message\": \"Password must contain at least one uppercase letter\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"full_name\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"body\",\n      \"city\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  }\n]\n    at file:///C:/Users/gayat/Downloads/SLSBP/backend/src/middleware/validate.js:6:29\n    at Layer.handleRequest (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "customer",
+      "provider"
+    ],
+    "path": [
+      "body",
+      "role"
+    ],
+    "message": "Invalid option: expected one of \"customer\"|\"provider\""
+  }
+] {"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/register"},"service":"booking-platform-api","stack":"ZodError: [\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"customer\",\n      \"provider\"\n    ],\n    \"path\": [\n      \"body\",\n      \"role\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"customer\\\"|\\\"provider\\\"\"\n  }\n]\n    at file:///C:/Users/gayat/Downloads/SLSBP/backend/src/middleware/validate.js:6:29\n    at Layer.handleRequest (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:295:15\n    at processParams (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:291:5)\n    at Function.handle (C:\\Users\\gayat\\Downloads\\SLSBP\\backend\\node_modules\\router\\index.js:186:3)"}
+[31merror[39m: Invalid email or password {"code":"UNAUTHORIZED","isOperational":true,"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/login"},"service":"booking-platform-api","stack":"Error: Invalid email or password\n    at AppError.unauthorized (file:///C:/Users/gayat/Downloads/SLSBP/backend/src/utils/AppError.js:49:3)\n    at Object.login (file:///C:/Users/gayat/Downloads/SLSBP/backend/src/modules/auth/auth.service.js:77:40)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/gayat/Downloads/SLSBP/backend/src/modules/auth/auth.controller.js:12:18","statusCode":401}
+[31merror[39m: Invalid email or password {"code":"UNAUTHORIZED","isOperational":true,"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/login"},"service":"booking-platform-api","stack":"Error: Invalid email or password\n    at AppError.unauthorized (file:///C:/Users/gayat/Downloads/SLSBP/backend/src/utils/AppError.js:49:3)\n    at Object.login (file:///C:/Users/gayat/Downloads/SLSBP/backend/src/modules/auth/auth.service.js:77:40)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/gayat/Downloads/SLSBP/backend/src/modules/auth/auth.controller.js:12:18","statusCode":401}
+[31merror[39m: Invalid email or password {"code":"UNAUTHORIZED","isOperational":true,"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/login"},"service":"booking-platform-api","stack":"Error: Invalid email or password\n    at AppError.unauthorized (file:///C:/Users/gayat/Downloads/SLSBP/backend/src/utils/AppError.js:49:3)\n    at Object.login (file:///C:/Users/gayat/Downloads/SLSBP/backend/src/modules/auth/auth.service.js:77:40)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/gayat/Downloads/SLSBP/backend/src/modules/auth/auth.controller.js:12:18","statusCode":401}

@@ -21,7 +21,9 @@ export default function LandingPage() {
       <section className="bg-white border-b border-gray-200 py-14 sm:py-20 px-4 sm:px-6">
         <div className="max-w-xl mx-auto text-center">
 
-          
+          <span className="inline-block text-[10px] sm:text-[11px] font-medium text-gray-400 uppercase tracking-widest border border-gray-200 rounded-full px-3 sm:px-4 py-1.5 mb-5">
+            Trusted by 10,000+ customers
+          </span>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-black leading-tight tracking-tight mb-4">
             Find trusted local

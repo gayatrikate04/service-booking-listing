@@ -8,7 +8,7 @@ import { formatDate, formatTime, getUpcomingDates } from '@/utils/format';
 import { MOCK_PROVIDERS, MOCK_SLOTS } from '@/data/mock';
 import { bookingService } from '@/services/bookingService';
 import { useUser } from '@/store/authStore';
-
+import { getInitials } from '@/utils/format';
 function BookingSteps({ step }) {
   const steps = ['Select Date', 'Choose Time', 'Confirm'];
   return (
@@ -105,197 +105,275 @@ function BookingContent() {
     }
   }
 
-  return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-      <button onClick={() => router.back()}
-        className="text-sm text-gray-500 hover:text-gray-800 mb-6">
-        ← Back
-      </button>
+return (
+  <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8 overflow-x-hidden">
+    <button
+      onClick={() => router.back()}
+      className="text-sm text-gray-500 hover:text-gray-800 mb-6"
+    >
+      ← Back
+    </button>
 
-      <BookingSteps step={step} />
+    <BookingSteps step={step} />
 
-      {error && (
-        <div className="mb-5 p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
-          {error}
-        </div>
-      )}
+    {error && (
+      <div className="mb-5 p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
+        {error}
+      </div>
+    )}
 
-      <div className="grid grid-cols-[1fr_280px] gap-6 items-start">
-        {/* Main content */}
-        <div className="bg-white border border-gray-200 rounded-xl shadow-card p-6">
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6 items-start">
 
-          {/* STEP 1: Date */}
-          {step === 1 && (
-            <div>
-              <h2 className="text-base font-semibold text-gray-900 mb-1">Select a date</h2>
-              <p className="text-xs text-gray-500 mb-5">Choose your preferred date for the service</p>
+      {/* Main content */}
+      <div className="bg-white border border-gray-200 rounded-xl shadow-card p-4 sm:p-6">
 
-              <div className="grid grid-cols-7 gap-2">
-                {upcomingDates.map((d) => (
-                  <button
-                    key={d.date}
-                    onClick={() => setDate(d.date)}
-                    className={`flex flex-col items-center py-2.5 px-1 rounded-xl border text-center transition-all ${
-                      date === d.date
-                        ? 'bg-blue-600 text-white border-blue-600'
-                        : 'bg-white text-gray-700 border-gray-200 hover:border-blue-300'
-                    }`}
-                  >
-                    <span className="text-[10px] opacity-70">{d.dayName}</span>
-                    <span className="text-sm font-semibold mt-0.5">{d.dayNum}</span>
-                  </button>
-                ))}
-              </div>
+        {/* STEP 1: Date */}
+        {step === 1 && (
+          <div>
+            <h2 className="text-base font-semibold text-gray-900 mb-1">
+              Select a date
+            </h2>
+
+            <p className="text-xs text-gray-500 mb-5">
+              Choose your preferred date for the service
+            </p>
+
+            <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 gap-2">
+              {upcomingDates.map((d) => (
+                <button
+                  key={d.date}
+                  onClick={() => setDate(d.date)}
+                  className={`flex flex-col items-center py-2.5 px-1 rounded-xl border text-center transition-all ${
+                    date === d.date
+                      ? 'bg-blue-600 text-white border-blue-600'
+                      : 'bg-white text-gray-700 border-gray-200 hover:border-blue-300'
+                  }`}
+                >
+                  <span className="text-[10px] opacity-70">
+                    {d.dayName}
+                  </span>
+
+                  <span className="text-sm font-semibold mt-0.5">
+                    {d.dayNum}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            <Button
+              variant="primary"
+              fullWidth
+              onClick={() => setStep(2)}
+              disabled={!date}
+              className="mt-6"
+            >
+              Continue →
+            </Button>
+          </div>
+        )}
+
+        {/* STEP 2: Time slot */}
+        {step === 2 && (
+          <div>
+            <h2 className="text-base font-semibold text-gray-900 mb-1">
+              Choose a time slot
+            </h2>
+
+            <p className="text-xs text-gray-500 mb-5">
+              Available on {formatDate(date)}
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {MOCK_SLOTS.map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => setSlot(s)}
+                  className={`py-3 text-sm font-medium rounded-xl border transition-all ${
+                    slot?.id === s.id
+                      ? 'bg-blue-600 text-white border-blue-600'
+                      : 'bg-white text-gray-700 border-gray-200 hover:border-blue-400 hover:text-blue-600'
+                  }`}
+                >
+                  {formatTime(s.start_time)}
+                </button>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 mt-6">
+              <Button variant="outline" onClick={() => setStep(1)}>
+                ← Back
+              </Button>
 
               <Button
-                variant="primary" fullWidth
-                onClick={() => setStep(2)}
-                disabled={!date}
-                className="mt-6"
+                variant="primary"
+                fullWidth
+                onClick={() => setStep(3)}
+                disabled={!slot}
               >
                 Continue →
               </Button>
             </div>
-          )}
+          </div>
+        )}
 
-          {/* STEP 2: Time slot */}
-          {step === 2 && (
-            <div>
-              <h2 className="text-base font-semibold text-gray-900 mb-1">Choose a time slot</h2>
-              <p className="text-xs text-gray-500 mb-5">
-                Available on {formatDate(date)}
-              </p>
+        {/* STEP 3: Confirm */}
+        {step === 3 && (
+          <div>
+            <h2 className="text-base font-semibold text-gray-900 mb-5">
+              Confirm your booking
+            </h2>
 
-              {/* REAL API: replace MOCK_SLOTS with availabilityService.getSlots(provider.id, date) */}
-              <div className="grid grid-cols-3 gap-3">
-                {MOCK_SLOTS.map((s) => (
-                  <button
-                    key={s.id}
-                    onClick={() => setSlot(s)}
-                    className={`py-3 text-sm font-medium rounded-xl border transition-all ${
-                      slot?.id === s.id
-                        ? 'bg-blue-600 text-white border-blue-600'
-                        : 'bg-white text-gray-700 border-gray-200 hover:border-blue-400 hover:text-blue-600'
-                    }`}
-                  >
-                    {formatTime(s.start_time)}
-                  </button>
-                ))}
+            {/* Provider summary */}
+            <div className="flex gap-3 items-start p-4 bg-gray-50 rounded-xl mb-5">
+              <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-blue-700 font-semibold flex-shrink-0">
+                {getInitials(provider.full_name)}
               </div>
 
-              <div className="flex gap-3 mt-6">
-                <Button variant="outline" onClick={() => setStep(1)}>← Back</Button>
-                <Button variant="primary" fullWidth onClick={() => setStep(3)} disabled={!slot}>
-                  Continue →
-                </Button>
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-gray-900 break-words">
+                  {provider.full_name}
+                </p>
+
+                <p className="text-xs text-gray-500 break-words">
+                  {provider.category} · {provider.city}
+                </p>
               </div>
+            </div>
+
+            {/* Details */}
+            <div className="space-y-2 mb-5">
+              {[
+                ['Service', service.name],
+                ['Date', formatDate(date)],
+                ['Time', slot ? formatTime(slot.start_time) : ''],
+                ['Duration', '1 hour'],
+              ].map(([k, v]) => (
+                <div
+                  key={k}
+                  className="flex justify-between gap-4 py-2.5 border-b border-gray-100"
+                >
+                  <span className="text-sm text-gray-500 shrink-0">
+                    {k}
+                  </span>
+
+                  <span className="text-sm font-medium text-gray-900 text-right break-words">
+                    {v}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Notes */}
+            <div className="mb-5">
+              <label className="text-sm font-medium text-gray-700 block mb-1.5">
+                Notes for provider{' '}
+                <span className="text-gray-400 font-normal">
+                  (optional)
+                </span>
+              </label>
+
+              <textarea
+                rows={3}
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                placeholder="Any special instructions or requirements..."
+                className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button
+                variant="outline"
+                onClick={() => setStep(2)}
+                disabled={loading}
+              >
+                ← Back
+              </Button>
+
+              <Button
+                variant="primary"
+                fullWidth
+                loading={loading}
+                onClick={confirmBooking}
+              >
+                Confirm & Book
+              </Button>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Summary sidebar */}
+      <div className="bg-white border border-gray-200 rounded-xl shadow-card p-5 lg:sticky lg:top-20">
+        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">
+          Booking Summary
+        </p>
+
+        <div className="flex items-center gap-2 mb-4 pb-4 border-b border-gray-100">
+          <span className="text-2xl">
+            {['🧹', '🔧', '⚡', '🌿', '💆', '📚', '🐾', '📦'][provider.category_id - 1] || '🔧'}
+          </span>
+
+          <div className="min-w-0">
+            <p className="text-sm font-medium text-gray-900 break-words">
+              {provider.full_name}
+            </p>
+
+            <p className="text-xs text-gray-500 break-words">
+              {provider.category}
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <div className="flex justify-between gap-4 text-xs">
+            <span className="text-gray-500">Service</span>
+
+            <span className="font-medium text-gray-900 text-right break-words">
+              {service.name}
+            </span>
+          </div>
+
+          {date && (
+            <div className="flex justify-between gap-4 text-xs">
+              <span className="text-gray-500">Date</span>
+
+              <span className="font-medium text-gray-900 text-right">
+                {formatDate(date)}
+              </span>
             </div>
           )}
 
-          {/* STEP 3: Confirm */}
-          {step === 3 && (
-            <div>
-              <h2 className="text-base font-semibold text-gray-900 mb-5">Confirm your booking</h2>
+          {slot && (
+            <div className="flex justify-between gap-4 text-xs">
+              <span className="text-gray-500">Time</span>
 
-              {/* Provider summary */}
-              <div className="flex gap-3 items-start p-4 bg-gray-50 rounded-xl mb-5">
-                <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-blue-700 font-semibold flex-shrink-0">
-                  {getInitials(provider.full_name)}
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-gray-900">{provider.full_name}</p>
-                  <p className="text-xs text-gray-500">{provider.category} · {provider.city}</p>
-                </div>
-              </div>
-
-              {/* Details */}
-              <div className="space-y-2 mb-5">
-                {[
-                  ['Service',  service.name],
-                  ['Date',     formatDate(date)],
-                  ['Time',     slot ? formatTime(slot.start_time) : ''],
-                  ['Duration', '1 hour'],
-                ].map(([k, v]) => (
-                  <div key={k} className="flex justify-between py-2.5 border-b border-gray-100">
-                    <span className="text-sm text-gray-500">{k}</span>
-                    <span className="text-sm font-medium text-gray-900">{v}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Notes */}
-              <div className="mb-5">
-                <label className="text-sm font-medium text-gray-700 block mb-1.5">
-                  Notes for provider{' '}
-                  <span className="text-gray-400 font-normal">(optional)</span>
-                </label>
-                <textarea
-                  rows={3}
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  placeholder="Any special instructions or requirements..."
-                  className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              <div className="flex gap-3">
-                <Button variant="outline" onClick={() => setStep(2)} disabled={loading}>
-                  ← Back
-                </Button>
-                <Button variant="primary" fullWidth loading={loading} onClick={confirmBooking}>
-                  Confirm & Book
-                </Button>
-              </div>
+              <span className="font-medium text-gray-900 text-right">
+                {formatTime(slot.start_time)}
+              </span>
             </div>
           )}
         </div>
 
-        {/* Summary sidebar */}
-        <div className="bg-white border border-gray-200 rounded-xl shadow-card p-5 sticky top-20">
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">
-            Booking Summary
-          </p>
-
-          <div className="flex items-center gap-2 mb-4 pb-4 border-b border-gray-100">
-            <span className="text-2xl">
-              {['🧹', '🔧', '⚡', '🌿', '💆', '📚', '🐾', '📦'][provider.category_id - 1] || '🔧'}
+        <div className="mt-4 pt-4 border-t border-gray-100">
+          <div className="flex justify-between gap-4">
+            <span className="text-sm font-semibold text-gray-900">
+              Total
             </span>
-            <div>
-              <p className="text-sm font-medium text-gray-900">{provider.full_name}</p>
-              <p className="text-xs text-gray-500">{provider.category}</p>
-            </div>
+
+            <span className="text-base font-bold text-blue-600">
+              ${service.price_per_hour}
+            </span>
           </div>
 
-          <div className="space-y-2">
-            <div className="flex justify-between text-xs">
-              <span className="text-gray-500">Service</span>
-              <span className="font-medium text-gray-900">{service.name}</span>
-            </div>
-            {date && (
-              <div className="flex justify-between text-xs">
-                <span className="text-gray-500">Date</span>
-                <span className="font-medium text-gray-900">{formatDate(date)}</span>
-              </div>
-            )}
-            {slot && (
-              <div className="flex justify-between text-xs">
-                <span className="text-gray-500">Time</span>
-                <span className="font-medium text-gray-900">{formatTime(slot.start_time)}</span>
-              </div>
-            )}
-          </div>
-
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <div className="flex justify-between">
-              <span className="text-sm font-semibold text-gray-900">Total</span>
-              <span className="text-base font-bold text-blue-600">${service.price_per_hour}</span>
-            </div>
-            <p className="text-xs text-gray-400 mt-1">Per {provider.price_unit}</p>
-          </div>
+          <p className="text-xs text-gray-400 mt-1">
+            Per {provider.price_unit}
+          </p>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default function BookingPage() {

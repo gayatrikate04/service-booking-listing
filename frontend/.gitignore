@@ -1,4 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ── Secrets ──────────────────────────────────────────────────────────────────
+.env
+.env.local
+.env.production
+.env.test
 
 # dependencies
 /node_modules
@@ -13,9 +18,11 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
+# ── Next.js build ─────────────────────────────────────────────────────────────
+.next/
+out/
+build/
+dist/
 
 # production
 /build
@@ -39,3 +46,24 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+
+# ── Test coverage ─────────────────────────────────────────────────────────────
+coverage/
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Editor ────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Docker ────────────────────────────────────────────────────────────────────
+mysql-data/

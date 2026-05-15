@@ -27,15 +27,30 @@ export function Button({
     lg: 'px-6 py-3 text-base',
   };
 
-  return (
-    <button
-      type={type}
-      onClick={onClick}
-      disabled={disabled || loading}
-      className={cn(base, variants[variant], sizes[size], fullWidth && 'w-full', className)}
-    >
-      {loading && <Spinner size="sm" className="border-current border-t-transparent" />}
+ return (
+  <button
+    type={type}
+    onClick={onClick}
+    disabled={disabled || loading}
+    className={cn(
+      base,
+      variants[variant],
+      sizes[size],
+      fullWidth && 'w-full',
+      'max-w-full whitespace-normal break-words',
+      className
+    )}
+  >
+    {loading && (
+      <Spinner
+        size="sm"
+        className="border-current border-t-transparent flex-shrink-0"
+      />
+    )}
+
+    <span className="min-w-0 break-words">
       {children}
-    </button>
-  );
+    </span>
+  </button>
+);
 }

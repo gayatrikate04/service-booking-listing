@@ -78,104 +78,180 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8">
-      <h1 className="text-2xl font-semibold text-gray-900 mb-6">My Profile</h1>
+  <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-8 overflow-x-hidden">
 
-      {success && (
-        <div className="mb-5 p-3.5 bg-green-50 border border-green-200 rounded-xl text-sm text-green-700">
-          ✓ {success}
-        </div>
-      )}
-      {error && (
-        <div className="mb-5 p-3.5 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
-          {error}
-        </div>
-      )}
+    <h1 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-6">
+      My Profile
+    </h1>
 
-      {/* Avatar + name */}
-      <Card className="mb-5">
-        <div className="flex items-center gap-4 mb-6">
-          <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-xl font-semibold text-blue-700">
-            {getInitials(user.full_name)}
-          </div>
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900">{user.full_name}</h2>
-            <p className="text-sm text-gray-500 capitalize">{user.role} · Joined {new Date().getFullYear()}</p>
-          </div>
+    {success && (
+      <div className="mb-5 p-3.5 bg-green-50 border border-green-200 rounded-xl text-sm text-green-700">
+        ✓ {success}
+      </div>
+    )}
+
+    {error && (
+      <div className="mb-5 p-3.5 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
+        {error}
+      </div>
+    )}
+
+    {/* Avatar + name */}
+    <Card className="mb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
+
+        <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-xl font-semibold text-blue-700 flex-shrink-0">
+          {getInitials(user.full_name)}
         </div>
 
-        {!editing ? (
-          <>
-            {[
-              ['Full Name', user.full_name],
-              ['Email', user.email],
-              ['Phone', user.phone],
-              ['City', user.city],
-              ['Role', user.role],
-              ['Verified', user.is_verified ? 'Yes' : 'Pending'],
-            ].map(([k, v]) => (
-              <div key={k} className="flex justify-between items-center py-3 border-b border-gray-100 last:border-0">
-                <span className="text-sm text-gray-500">{k}</span>
-                <span className="text-sm font-medium text-gray-900 capitalize">{v}</span>
-              </div>
-            ))}
-            <Button variant="outline" onClick={() => setEditing(true)} className="mt-5">
-              Edit Profile
-            </Button>
-          </>
-        ) : (
-          <div className="space-y-4">
-            <Input
-              label="Full Name"
-              value={form.full_name}
-              onChange={(e) => setForm((f) => ({ ...f, full_name: e.target.value }))}
-            />
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium text-gray-700">City</label>
-              <select
-                value={form.city}
-                onChange={(e) => setForm((f) => ({ ...f, city: e.target.value }))}
-                className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                {CITIES.map((c) => <option key={c}>{c}</option>)}
-              </select>
+        <div className="min-w-0">
+          <h2 className="text-lg font-semibold text-gray-900 break-words">
+            {user.full_name}
+          </h2>
+
+          <p className="text-sm text-gray-500 capitalize break-words">
+            {user.role} · Joined {new Date().getFullYear()}
+          </p>
+        </div>
+      </div>
+
+      {!editing ? (
+        <>
+          {[
+            ['Full Name', user.full_name],
+            ['Email', user.email],
+            ['Phone', user.phone],
+            ['City', user.city],
+            ['Role', user.role],
+            ['Verified', user.is_verified ? 'Yes' : 'Pending'],
+          ].map(([k, v]) => (
+            <div
+              key={k}
+              className="flex justify-between items-start gap-4 py-3 border-b border-gray-100 last:border-0"
+            >
+              <span className="text-sm text-gray-500 shrink-0">
+                {k}
+              </span>
+
+              <span className="text-sm font-medium text-gray-900 capitalize text-right break-words">
+                {v}
+              </span>
             </div>
-            <div className="flex gap-3 pt-2">
-              <Button variant="outline" onClick={() => setEditing(false)} disabled={loading}>
-                Cancel
-              </Button>
-              <Button variant="primary" loading={loading} onClick={handleSave}>
-                Save Changes
-              </Button>
-            </div>
-          </div>
-        )}
-      </Card>
+          ))}
 
-      {/* Change password */}
-      <Card>
-        <h3 className="text-base font-semibold text-gray-900 mb-4">Change Password</h3>
-        <div className="space-y-4">
-          <Input
-            label="Current Password"
-            type="password"
-            value={pwForm.currentPassword}
-            onChange={(e) => setPwForm((f) => ({ ...f, currentPassword: e.target.value }))}
-            placeholder="Enter current password"
-          />
-          <Input
-            label="New Password"
-            type="password"
-            value={pwForm.newPassword}
-            onChange={(e) => setPwForm((f) => ({ ...f, newPassword: e.target.value }))}
-            placeholder="Min. 8 characters"
-            hint="Must include uppercase letter and number"
-          />
-          <Button variant="primary" loading={pwLoad} onClick={handleChangePassword}>
-            Update Password
+          <Button
+            variant="outline"
+            onClick={() => setEditing(true)}
+            className="mt-5 w-full sm:w-auto"
+          >
+            Edit Profile
           </Button>
+        </>
+      ) : (
+        <div className="space-y-4">
+
+          <Input
+            label="Full Name"
+            value={form.full_name}
+            onChange={(e) =>
+              setForm((f) => ({
+                ...f,
+                full_name: e.target.value,
+              }))
+            }
+          />
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-medium text-gray-700">
+              City
+            </label>
+
+            <select
+              value={form.city}
+              onChange={(e) =>
+                setForm((f) => ({
+                  ...f,
+                  city: e.target.value,
+                }))
+              }
+              className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              {CITIES.map((c) => (
+                <option key={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 pt-2">
+            <Button
+              variant="outline"
+              onClick={() => setEditing(false)}
+              disabled={loading}
+              className="w-full"
+            >
+              Cancel
+            </Button>
+
+            <Button
+              variant="primary"
+              loading={loading}
+              onClick={handleSave}
+              className="w-full"
+            >
+              Save Changes
+            </Button>
+          </div>
         </div>
-      </Card>
-    </div>
-  );
+      )}
+    </Card>
+
+    {/* Change password */}
+    <Card>
+      <h3 className="text-base font-semibold text-gray-900 mb-4">
+        Change Password
+      </h3>
+
+      <div className="space-y-4">
+
+        <Input
+          label="Current Password"
+          type="password"
+          value={pwForm.currentPassword}
+          onChange={(e) =>
+            setPwForm((f) => ({
+              ...f,
+              currentPassword: e.target.value,
+            }))
+          }
+          placeholder="Enter current password"
+        />
+
+        <Input
+          label="New Password"
+          type="password"
+          value={pwForm.newPassword}
+          onChange={(e) =>
+            setPwForm((f) => ({
+              ...f,
+              newPassword: e.target.value,
+            }))
+          }
+          placeholder="Min. 8 characters"
+          hint="Must include uppercase letter and number"
+        />
+
+        <Button
+          variant="primary"
+          loading={pwLoad}
+          onClick={handleChangePassword}
+          className="w-full sm:w-auto"
+        >
+          Update Password
+        </Button>
+      </div>
+    </Card>
+  </div>
+);
 }

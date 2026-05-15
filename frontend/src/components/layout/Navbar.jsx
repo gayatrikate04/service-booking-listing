@@ -39,90 +39,135 @@ export function Navbar() {
   }
 
   return (
-    <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center h-14 gap-4">
+  <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
 
-          {/* ── Logo ── */}
-          <Link href="/" className="flex items-center gap-2 mr-2">
-            <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-              <span className="text-white text-sm font-semibold">S</span>
-            </div>
-            <span className="text-sm font-semibold text-black tracking-tight">
-              ServiceBook
+    <div className="max-w-6xl mx-auto px-4 sm:px-6">
+
+      <div className="flex items-center h-14 gap-3 sm:gap-4 overflow-hidden">
+
+        {/* ── Logo ── */}
+        <Link
+          href="/"
+          className="flex items-center gap-2 mr-1 sm:mr-2 min-w-0"
+        >
+          <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center flex-shrink-0">
+            <span className="text-white text-sm font-semibold">
+              S
             </span>
-          </Link>
+          </div>
 
-          {/* ── Nav links ── */}
-          <nav className="hidden md:flex items-center gap-0.5">
-            <NavLink href="/providers">Categories</NavLink>
-            <NavLink href="/#how-it-works">How It Works</NavLink>
-            {(!user || user.role === 'customer') && (
-              <NavLink href="/onboarding">Become a Provider</NavLink>
-            )}
-          </nav>
+          <span className="text-sm font-semibold text-black tracking-tight truncate">
+            ServiceBook
+          </span>
+        </Link>
 
-          <div className="flex-1" />
+        {/* ── Nav links ── */}
+        <nav className="hidden md:flex items-center gap-0.5">
 
-          {/* ── Auth section ── */}
-          {user ? (
-            <div className="flex items-center gap-2">
+          <NavLink href="/providers">
+            Categories
+          </NavLink>
 
-              {user.role === 'customer' && (
-                <NavLink href="/dashboard">My Bookings</NavLink>
-              )}
-              {user.role === 'provider' && (
-                <NavLink href="/provider/dashboard">Provider Inbox</NavLink>
-              )}
+          <NavLink href="/#how-it-works">
+            How It Works
+          </NavLink>
 
-              {/* Divider + user info */}
-              <div className="flex items-center gap-2.5 pl-3 border-l border-gray-100">
-                <div className="text-right hidden sm:block">
-                  <p className="text-xs font-medium text-black leading-tight">
-                    {user.full_name}
-                  </p>
-                  <p className="text-[11px] text-gray-400 capitalize">{user.role}</p>
-                </div>
-
-                {/* Avatar */}
-                <Link
-                  href={user.role === 'provider' ? '/provider/dashboard' : '/profile'}
-                  className="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-xs font-semibold text-gray-700 hover:bg-gray-200 transition-colors"
-                >
-                  {getInitials(user.full_name)}
-                </Link>
-
-                {/* Logout */}
-                <button
-                  onClick={handleLogout}
-                  title="Sign out"
-                  className="p-1.5 text-gray-400 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
-                >
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="flex items-center gap-2">
-              <Link
-                href="/login"
-                className="text-sm font-medium text-gray-500 hover:text-black px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                Sign in
-              </Link>
-              <Link
-                href="/register"
-                className="text-sm font-medium bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                Get started
-              </Link>
-            </div>
+          {(!user || user.role === 'customer') && (
+            <NavLink href="/onboarding">
+              Become a Provider
+            </NavLink>
           )}
-        </div>
+        </nav>
+
+        <div className="flex-1" />
+
+        {/* ── Auth section ── */}
+        {user ? (
+          <div className="flex items-center gap-2 min-w-0">
+
+            {user.role === 'customer' && (
+              <div className="hidden sm:block">
+                <NavLink href="/dashboard">
+                  My Bookings
+                </NavLink>
+              </div>
+            )}
+
+            {user.role === 'provider' && (
+              <div className="hidden sm:block">
+                <NavLink href="/provider/dashboard">
+                  Provider Inbox
+                </NavLink>
+              </div>
+            )}
+
+            {/* Divider + user info */}
+            <div className="flex items-center gap-2 sm:gap-2.5 pl-2 sm:pl-3 border-l border-gray-100 min-w-0">
+
+              <div className="text-right hidden md:block min-w-0">
+                <p className="text-xs font-medium text-black leading-tight truncate">
+                  {user.full_name}
+                </p>
+
+                <p className="text-[11px] text-gray-400 capitalize truncate">
+                  {user.role}
+                </p>
+              </div>
+
+              {/* Avatar */}
+              <Link
+                href={
+                  user.role === 'provider'
+                    ? '/provider/dashboard'
+                    : '/profile'
+                }
+                className="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-xs font-semibold text-gray-700 hover:bg-gray-200 transition-colors flex-shrink-0"
+              >
+                {getInitials(user.full_name)}
+              </Link>
+
+              {/* Logout */}
+              <button
+                onClick={handleLogout}
+                title="Sign out"
+                className="p-1.5 text-gray-400 hover:text-black hover:bg-gray-100 rounded-lg transition-colors flex-shrink-0"
+              >
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2 flex-shrink-0">
+
+            <Link
+              href="/login"
+              className="text-sm font-medium text-gray-500 hover:text-black px-2 sm:px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors whitespace-nowrap"
+            >
+              Sign in
+            </Link>
+
+            <Link
+              href="/register"
+              className="text-sm font-medium bg-black text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors whitespace-nowrap"
+            >
+              Get started
+            </Link>
+          </div>
+        )}
       </div>
-    </header>
-  );
+    </div>
+  </header>
+);
 }

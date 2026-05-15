@@ -524,3 +524,27 @@
 [32mhttp[39m: ::1 - - [19/Apr/2026:18:04:54 +0000] "POST /api/v1/auth/register HTTP/1.1" 201 687 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36" {"service":"booking-platform-api"}
 [32minfo[39m: [AUTH] User logged in {"role":"customer","service":"booking-platform-api","userId":3}
 [32mhttp[39m: ::1 - - [19/Apr/2026:18:05:10 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 607 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36" {"service":"booking-platform-api"}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","poolMax":10,"service":"booking-platform-api"}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","poolMax":10,"service":"booking-platform-api"}
+[32minfo[39m: [SERVER] Running on port 3001 in development mode {"service":"booking-platform-api"}
+[32minfo[39m: [AUTH] User logged in {"role":"customer","service":"booking-platform-api","userId":3}
+[32mhttp[39m: ::1 - - [21/Apr/2026:19:33:33 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 607 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36" {"service":"booking-platform-api"}
+[32mhttp[39m: ::1 - - [21/Apr/2026:19:34:17 +0000] "PATCH /api/v1/users/me HTTP/1.1" 200 279 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36" {"service":"booking-platform-api"}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","poolMax":10,"service":"booking-platform-api"}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","poolMax":10,"service":"booking-platform-api"}
+[32minfo[39m: [SERVER] Running on port 3001 in development mode {"service":"booking-platform-api"}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","service":"booking-platform-api"}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","service":"booking-platform-api"}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","service":"booking-platform-api","ssl":false}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","service":"booking-platform-api","ssl":false}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","service":"booking-platform-api","ssl":false}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","service":"booking-platform-api","ssl":false}
+[32minfo[39m: [SERVER] Running on port 3001 in development mode {"service":"booking-platform-api"}
+[32minfo[39m: [AUTH] User logged in {"role":"customer","service":"booking-platform-api","userId":3}
+[32mhttp[39m: ::1 - - [15/May/2026:19:08:26 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 607 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36" {"service":"booking-platform-api"}
+[32minfo[39m: [AUTH] User logged in {"role":"customer","service":"booking-platform-api","userId":3}
+[32mhttp[39m: ::1 - - [15/May/2026:19:09:29 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 607 "http://localhost:3000/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36" {"service":"booking-platform-api"}
+[32minfo[39m: [AUTH] User logged in {"role":"customer","service":"booking-platform-api","userId":3}
+[32mhttp[39m: ::1 - - [15/May/2026:19:25:01 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 607 "http://localhost:3000/" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36" {"service":"booking-platform-api"}
+[32minfo[39m: [AUTH] User logged in {"role":"customer","service":"booking-platform-api","userId":3}
+[32mhttp[39m: ::1 - - [15/May/2026:19:30:48 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 607 "http://localhost:3000/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36" {"service":"booking-platform-api"}

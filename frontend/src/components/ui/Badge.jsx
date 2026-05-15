@@ -10,12 +10,15 @@ const variants = {
 };
 
 export function Badge({ children, variant = 'gray', className = '' }) {
-  return (
-    <span className={cn(
-      'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border',
-      variants[variant], className
-    )}>
-      {children}
-    </span>
-  );
+ return (
+  <span
+    className={cn(
+      'inline-flex items-center max-w-full px-2.5 py-0.5 rounded-full text-xs font-medium border break-words whitespace-normal',
+      variants[variant],
+      className
+    )}
+  >
+    {children}
+  </span>
+);
 }

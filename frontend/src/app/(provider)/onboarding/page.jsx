@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
@@ -47,8 +47,15 @@ export default function OnboardingPage() {
   ]);
 
   // If not logged in as provider, redirect
-  if (!user) { router.push('/login'); return null; }
-  if (user.role !== 'provider') { router.push('/providers'); return null; }
+  useEffect(() => {
+  if (!user) {
+    router.push('/login');
+  } else if (user.role !== 'provider') {
+    router.push('/providers');
+  }
+}, [user, router]);
+
+if (!user || user.role !== 'provider') return null;
 
   function addService() {
     setServices((prev) => [
@@ -138,319 +145,554 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8">
-      {/* Progress */}
-      <div className="flex mb-8">
-        {STEPS.map((label, i) => {
-          const num    = i + 1;
-          const done   = num < step;
-          const active = num === step;
-          return (
-            <div key={label} className="flex-1 flex flex-col items-center relative">
-              {i < STEPS.length - 1 && (
-                <div className={`absolute top-3.5 left-1/2 w-full h-px ${done ? 'bg-blue-600' : 'bg-gray-200'}`} style={{ zIndex: 0 }} />
-              )}
-              <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold z-10 mb-1.5 ${
-                done ? 'bg-blue-600 text-white' :
-                active ? 'bg-blue-600 text-white ring-4 ring-blue-100' :
-                         'bg-gray-100 text-gray-400'
-              }`}>
-                {done ? '✓' : num}
-              </div>
-              <span className={`text-xs ${active ? 'text-blue-600 font-medium' : 'text-gray-400'}`}>
-                {label}
-              </span>
+  <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-8 overflow-x-hidden">
+
+    {/* Progress */}
+    <div className="flex mb-8 overflow-x-auto">
+      {STEPS.map((label, i) => {
+        const num = i + 1;
+        const done = num < step;
+        const active = num === step;
+
+        return (
+          <div
+            key={label}
+            className="flex-1 min-w-[70px] flex flex-col items-center relative"
+          >
+            {i < STEPS.length - 1 && (
+              <div
+                className={`absolute top-3.5 left-1/2 w-full h-px ${
+                  done
+                    ? 'bg-blue-600'
+                    : 'bg-gray-200'
+                }`}
+                style={{ zIndex: 0 }}
+              />
+            )}
+
+            <div
+              className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold z-10 mb-1.5 ${
+                done
+                  ? 'bg-blue-600 text-white'
+                  : active
+                    ? 'bg-blue-600 text-white ring-4 ring-blue-100'
+                    : 'bg-gray-100 text-gray-400'
+              }`}
+            >
+              {done ? '✓' : num}
             </div>
-          );
-        })}
-      </div>
 
-      <div className="bg-white border border-gray-200 rounded-2xl shadow-card p-7">
-
-        {error && (
-          <div className="mb-5 p-3.5 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
-            {error}
+            <span
+              className={`text-[10px] sm:text-xs text-center ${
+                active
+                  ? 'text-blue-600 font-medium'
+                  : 'text-gray-400'
+              }`}
+            >
+              {label}
+            </span>
           </div>
-        )}
+        );
+      })}
+    </div>
 
-        {/* ── STEP 1: Basic Info ── */}
-        {step === 1 && (
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-1">Tell us about yourself</h2>
-            <p className="text-sm text-gray-500 mb-6">This info appears on your public profile</p>
+    <div className="bg-white border border-gray-200 rounded-2xl shadow-card p-4 sm:p-7">
 
-            <div className="space-y-4">
-              <div>
-                <label className="text-sm font-medium text-gray-700 block mb-1.5">
-                  Professional Bio <span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  rows={4}
-                  value={info.bio}
-                  onChange={(e) => setInfo((i) => ({ ...i, bio: e.target.value }))}
-                  placeholder="Describe your expertise, experience, and what makes you stand out..."
-                  className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <p className="text-xs text-gray-400 mt-1">{info.bio.length}/500</p>
-              </div>
+      {error && (
+        <div className="mb-5 p-3.5 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
+          {error}
+        </div>
+      )}
 
-              <div className="grid grid-cols-2 gap-4">
-                <Input
-                  label="Years of Experience *"
-                  type="number"
-                  min={0}
-                  max={50}
-                  value={info.years_exp}
-                  onChange={(e) => setInfo((i) => ({ ...i, years_exp: e.target.value }))}
-                  placeholder="e.g. 5"
-                />
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-sm font-medium text-gray-700">City *</label>
-                  <select
-                    value={info.city}
-                    onChange={(e) => setInfo((i) => ({ ...i, city: e.target.value }))}
-                    className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    {CITIES.map((c) => <option key={c}>{c}</option>)}
-                  </select>
-                </div>
-              </div>
+      {/* ── STEP 1: Basic Info ── */}
+      {step === 1 && (
+        <div>
+
+          <h2 className="text-lg font-semibold text-gray-900 mb-1">
+            Tell us about yourself
+          </h2>
+
+          <p className="text-sm text-gray-500 mb-6">
+            This info appears on your public profile
+          </p>
+
+          <div className="space-y-4">
+
+            <div>
+              <label className="text-sm font-medium text-gray-700 block mb-1.5">
+                Professional Bio{' '}
+                <span className="text-red-500">*</span>
+              </label>
+
+              <textarea
+                rows={4}
+                value={info.bio}
+                onChange={(e) =>
+                  setInfo((i) => ({
+                    ...i,
+                    bio: e.target.value,
+                  }))
+                }
+                placeholder="Describe your expertise, experience, and what makes you stand out..."
+                className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+
+              <p className="text-xs text-gray-400 mt-1">
+                {info.bio.length}/500
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+              <Input
+                label="Years of Experience *"
+                type="number"
+                min={0}
+                max={50}
+                value={info.years_exp}
+                onChange={(e) =>
+                  setInfo((i) => ({
+                    ...i,
+                    years_exp: e.target.value,
+                  }))
+                }
+                placeholder="e.g. 5"
+              />
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-medium text-gray-700">Service Radius</label>
-                <div className="flex items-center gap-3">
-                  <input
-                    type="range" min={5} max={50} step={5}
-                    value={info.service_radius_km}
-                    onChange={(e) => setInfo((i) => ({ ...i, service_radius_km: Number(e.target.value) }))}
-                    className="flex-1"
-                  />
-                  <span className="text-sm font-medium text-gray-900 w-16">
-                    {info.service_radius_km} km
-                  </span>
-                </div>
+                <label className="text-sm font-medium text-gray-700">
+                  City *
+                </label>
+
+                <select
+                  value={info.city}
+                  onChange={(e) =>
+                    setInfo((i) => ({
+                      ...i,
+                      city: e.target.value,
+                    }))
+                  }
+                  className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  {CITIES.map((c) => (
+                    <option key={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
 
-            <Button variant="primary" fullWidth loading={loading} onClick={submitStep1} className="mt-6">
-              Save & Continue →
-            </Button>
+            <div className="flex flex-col gap-1.5">
+
+              <label className="text-sm font-medium text-gray-700">
+                Service Radius
+              </label>
+
+              <div className="flex items-center gap-3">
+                <input
+                  type="range"
+                  min={5}
+                  max={50}
+                  step={5}
+                  value={info.service_radius_km}
+                  onChange={(e) =>
+                    setInfo((i) => ({
+                      ...i,
+                      service_radius_km: Number(e.target.value),
+                    }))
+                  }
+                  className="flex-1"
+                />
+
+                <span className="text-sm font-medium text-gray-900 w-16 shrink-0">
+                  {info.service_radius_km} km
+                </span>
+              </div>
+            </div>
           </div>
-        )}
 
-        {/* ── STEP 2: Services ── */}
-        {step === 2 && (
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-1">Add your services</h2>
-            <p className="text-sm text-gray-500 mb-6">Add each service you offer with its price</p>
+          <Button
+            variant="primary"
+            fullWidth
+            loading={loading}
+            onClick={submitStep1}
+            className="mt-6"
+          >
+            Save & Continue →
+          </Button>
+        </div>
+      )}
 
-            <div className="space-y-4">
-              {services.map((svc, i) => (
-                <div key={i} className="p-4 border border-gray-200 rounded-xl relative">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm font-medium text-gray-700">Service {i + 1}</span>
-                    {services.length > 1 && (
-                      <button
-                        onClick={() => removeService(i)}
-                        className="text-xs text-red-600 hover:text-red-800"
-                      >
-                        Remove
-                      </button>
-                    )}
-                  </div>
+      {/* ── STEP 2: Services ── */}
+      {step === 2 && (
+        <div>
 
-                  <div className="grid grid-cols-2 gap-3 mb-3">
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-medium text-gray-600">Category *</label>
-                      <select
-                        value={svc.categoryId}
-                        onChange={(e) => updateService(i, 'categoryId', e.target.value)}
-                        className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      >
-                        <option value="">Select category...</option>
-                        {MOCK_CATEGORIES.map((c) => (
-                          <option key={c.id} value={c.id}>{c.icon} {c.name}</option>
-                        ))}
-                      </select>
-                    </div>
+          <h2 className="text-lg font-semibold text-gray-900 mb-1">
+            Add your services
+          </h2>
 
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-medium text-gray-600">Price *</label>
-                      <div className="flex items-center gap-2">
-                        <div className="relative flex-1">
-                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
-                          <input
-                            type="number"
-                            min={1}
-                            value={svc.price_per_hour}
-                            onChange={(e) => updateService(i, 'price_per_hour', e.target.value)}
-                            placeholder="50"
-                            className="w-full pl-7 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          />
-                        </div>
-                        <select
-                          value={svc.price_unit}
-                          onChange={(e) => updateService(i, 'price_unit', e.target.value)}
-                          className="text-sm border border-gray-200 rounded-lg px-2 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        >
-                          <option value="per_hour">/ hr</option>
-                          <option value="per_visit">/ visit</option>
-                          <option value="per_sqft">/ sqft</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
+          <p className="text-sm text-gray-500 mb-6">
+            Add each service you offer with its price
+          </p>
+
+          <div className="space-y-4">
+
+            {services.map((svc, i) => (
+              <div
+                key={i}
+                className="p-4 border border-gray-200 rounded-xl relative"
+              >
+
+                <div className="flex items-center justify-between gap-3 mb-3">
+                  <span className="text-sm font-medium text-gray-700">
+                    Service {i + 1}
+                  </span>
+
+                  {services.length > 1 && (
+                    <button
+                      onClick={() => removeService(i)}
+                      className="text-xs text-red-600 hover:text-red-800 shrink-0"
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-medium text-gray-600">Min. Booking Hours</label>
+                    <label className="text-xs font-medium text-gray-600">
+                      Category *
+                    </label>
+
                     <select
-                      value={svc.min_booking_hours}
-                      onChange={(e) => updateService(i, 'min_booking_hours', Number(e.target.value))}
+                      value={svc.categoryId}
+                      onChange={(e) =>
+                        updateService(i, 'categoryId', e.target.value)
+                      }
                       className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                      {[1, 2, 3, 4].map((h) => (
-                        <option key={h} value={h}>{h} hour{h > 1 ? 's' : ''}</option>
+                      <option value="">
+                        Select category...
+                      </option>
+
+                      {MOCK_CATEGORIES.map((c) => (
+                        <option
+                          key={c.id}
+                          value={c.id}
+                        >
+                          {c.icon} {c.name}
+                        </option>
                       ))}
                     </select>
                   </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-xs font-medium text-gray-600">
+                      Price *
+                    </label>
+
+                    <div className="flex items-center gap-2">
+
+                      <div className="relative flex-1">
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
+                          $
+                        </span>
+
+                        <input
+                          type="number"
+                          min={1}
+                          value={svc.price_per_hour}
+                          onChange={(e) =>
+                            updateService(i, 'price_per_hour', e.target.value)
+                          }
+                          placeholder="50"
+                          className="w-full pl-7 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+
+                      <select
+                        value={svc.price_unit}
+                        onChange={(e) =>
+                          updateService(i, 'price_unit', e.target.value)
+                        }
+                        className="text-sm border border-gray-200 rounded-lg px-2 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        <option value="per_hour">
+                          / hr
+                        </option>
+
+                        <option value="per_visit">
+                          / visit
+                        </option>
+
+                        <option value="per_sqft">
+                          / sqft
+                        </option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
 
-            <button
-              onClick={addService}
-              className="mt-3 w-full py-2.5 border-2 border-dashed border-gray-300 rounded-xl text-sm text-gray-500 hover:border-blue-400 hover:text-blue-600 transition-colors"
-            >
-              + Add Another Service
-            </button>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-medium text-gray-600">
+                    Min. Booking Hours
+                  </label>
 
-            <div className="flex gap-3 mt-6">
-              <Button variant="outline" onClick={() => setStep(1)}>← Back</Button>
-              <Button variant="primary" fullWidth loading={loading} onClick={submitStep2}>
-                Save & Continue →
-              </Button>
-            </div>
+                  <select
+                    value={svc.min_booking_hours}
+                    onChange={(e) =>
+                      updateService(
+                        i,
+                        'min_booking_hours',
+                        Number(e.target.value)
+                      )
+                    }
+                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    {[1, 2, 3, 4].map((h) => (
+                      <option
+                        key={h}
+                        value={h}
+                      >
+                        {h} hour{h > 1 ? 's' : ''}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            ))}
           </div>
-        )}
 
-        {/* ── STEP 3: Availability ── */}
-        {step === 3 && (
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-1">Set your availability</h2>
-            <p className="text-sm text-gray-500 mb-6">
-              Enable working days and set hours. Bookable slots are generated automatically each night.
-            </p>
+          <button
+            onClick={addService}
+            className="mt-3 w-full py-2.5 border-2 border-dashed border-gray-300 rounded-xl text-sm text-gray-500 hover:border-blue-400 hover:text-blue-600 transition-colors"
+          >
+            + Add Another Service
+          </button>
 
-            <div className="space-y-2">
-              {availability.map((avail, i) => (
-                <div
-                  key={avail.day_of_week}
-                  className={`flex items-center gap-3 p-3.5 rounded-xl border transition-colors ${
+          <div className="flex flex-col sm:flex-row gap-3 mt-6">
+
+            <Button
+              variant="outline"
+              onClick={() => setStep(1)}
+              className="w-full sm:w-auto"
+            >
+              ← Back
+            </Button>
+
+            <Button
+              variant="primary"
+              fullWidth
+              loading={loading}
+              onClick={submitStep2}
+            >
+              Save & Continue →
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {/* ── STEP 3: Availability ── */}
+      {step === 3 && (
+        <div>
+
+          <h2 className="text-lg font-semibold text-gray-900 mb-1">
+            Set your availability
+          </h2>
+
+          <p className="text-sm text-gray-500 mb-6">
+            Enable working days and set hours. Bookable slots are generated automatically each night.
+          </p>
+
+          <div className="space-y-2">
+
+            {availability.map((avail, i) => (
+              <div
+                key={avail.day_of_week}
+                className={`flex flex-col sm:flex-row sm:items-center gap-3 p-3.5 rounded-xl border transition-colors ${
+                  avail.enabled
+                    ? 'border-blue-200 bg-blue-50'
+                    : 'border-gray-200 bg-gray-50 opacity-60'
+                }`}
+              >
+
+                {/* Toggle */}
+                <input
+                  type="checkbox"
+                  checked={avail.enabled}
+                  onChange={(e) =>
+                    updateAvailability(i, 'enabled', e.target.checked)
+                  }
+                  className="w-4 h-4 accent-blue-600 cursor-pointer"
+                />
+
+                {/* Day name */}
+                <span
+                  className={`text-sm font-medium sm:w-24 ${
                     avail.enabled
-                      ? 'border-blue-200 bg-blue-50'
-                      : 'border-gray-200 bg-gray-50 opacity-60'
+                      ? 'text-gray-900'
+                      : 'text-gray-400'
                   }`}
                 >
-                  {/* Toggle */}
-                  <input
-                    type="checkbox"
-                    checked={avail.enabled}
-                    onChange={(e) => updateAvailability(i, 'enabled', e.target.checked)}
-                    className="w-4 h-4 accent-blue-600 cursor-pointer"
-                  />
+                  {DAYS[avail.day_of_week]}
+                </span>
 
-                  {/* Day name */}
-                  <span className={`text-sm font-medium w-24 ${avail.enabled ? 'text-gray-900' : 'text-gray-400'}`}>
-                    {DAYS[avail.day_of_week]}
-                  </span>
+                {/* Time range */}
+                {avail.enabled && (
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full">
 
-                  {/* Time range */}
-                  {avail.enabled && (
-                    <>
-                      <input
-                        type="time"
-                        value={avail.start_time}
-                        onChange={(e) => updateAvailability(i, 'start_time', e.target.value)}
-                        className="text-sm border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                      <span className="text-gray-400 text-sm">to</span>
-                      <input
-                        type="time"
-                        value={avail.end_time}
-                        onChange={(e) => updateAvailability(i, 'end_time', e.target.value)}
-                        className="text-sm border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                      <select
-                        value={avail.slot_duration_min}
-                        onChange={(e) => updateAvailability(i, 'slot_duration_min', Number(e.target.value))}
-                        className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 ml-auto"
-                      >
-                        <option value={30}>30 min</option>
-                        <option value={60}>60 min</option>
-                        <option value={90}>90 min</option>
-                        <option value={120}>2 hrs</option>
-                      </select>
-                    </>
-                  )}
-                </div>
-              ))}
-            </div>
+                    <input
+                      type="time"
+                      value={avail.start_time}
+                      onChange={(e) =>
+                        updateAvailability(i, 'start_time', e.target.value)
+                      }
+                      className="w-full sm:w-auto text-sm border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
 
-            <div className="mt-5 p-4 bg-amber-50 border border-amber-200 rounded-xl text-sm text-amber-800">
-              <strong>How slots work:</strong> A nightly job generates bookable time slots from your schedule.
-              After saving, slots will appear for customers within 24 hours.
-            </div>
+                    <span className="text-gray-400 text-sm hidden sm:block">
+                      to
+                    </span>
 
-            <div className="flex gap-3 mt-6">
-              <Button variant="outline" onClick={() => setStep(2)}>← Back</Button>
-              <Button variant="primary" fullWidth loading={loading} onClick={submitStep3}>
-                Save & Complete →
-              </Button>
-            </div>
+                    <input
+                      type="time"
+                      value={avail.end_time}
+                      onChange={(e) =>
+                        updateAvailability(i, 'end_time', e.target.value)
+                      }
+                      className="w-full sm:w-auto text-sm border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+
+                    <select
+                      value={avail.slot_duration_min}
+                      onChange={(e) =>
+                        updateAvailability(
+                          i,
+                          'slot_duration_min',
+                          Number(e.target.value)
+                        )
+                      }
+                      className="w-full sm:w-auto text-xs border border-gray-200 rounded-lg px-2 py-1.5 sm:ml-auto"
+                    >
+                      <option value={30}>
+                        30 min
+                      </option>
+
+                      <option value={60}>
+                        60 min
+                      </option>
+
+                      <option value={90}>
+                        90 min
+                      </option>
+
+                      <option value={120}>
+                        2 hrs
+                      </option>
+                    </select>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
-        )}
 
-        {/* ── STEP 4: Complete ── */}
-        {step === 4 && (
-          <div className="text-center py-6">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-4xl mx-auto mb-5">
-              🎉
-            </div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              You're live on ServiceBook!
-            </h2>
-            <p className="text-sm text-gray-500 mb-6 max-w-sm mx-auto">
-              Your profile is now visible to customers. Slots will be generated tonight and customers
-              can start booking you by tomorrow.
-            </p>
-
-            <div className="space-y-3 text-left bg-gray-50 rounded-xl p-5 mb-6 max-w-sm mx-auto">
-              {[
-                ['Profile', 'Saved ✓', 'green'],
-                ['Services', `${services.filter(s => s.categoryId).length} added ✓`, 'green'],
-                ['Availability', `${availability.filter(a => a.enabled).length} days set ✓`, 'green'],
-                ['Slots', 'Generated tonight', 'yellow'],
-              ].map(([k, v, c]) => (
-                <div key={k} className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">{k}</span>
-                  <span className={`text-xs font-medium px-2 py-1 rounded-full ${
-                    c === 'green' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
-                  }`}>{v}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex gap-3 justify-center">
-              <Button variant="outline" onClick={() => router.push('/providers')}>
-                View Listing
-              </Button>
-              <Button variant="primary" onClick={() => router.push('/provider/dashboard')}>
-                Go to Dashboard →
-              </Button>
-            </div>
+          <div className="mt-5 p-4 bg-amber-50 border border-amber-200 rounded-xl text-sm text-amber-800 leading-relaxed">
+            <strong>How slots work:</strong>{' '}
+            A nightly job generates bookable time slots from your schedule.
+            After saving, slots will appear for customers within 24 hours.
           </div>
-        )}
-      </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 mt-6">
+
+            <Button
+              variant="outline"
+              onClick={() => setStep(2)}
+              className="w-full sm:w-auto"
+            >
+              ← Back
+            </Button>
+
+            <Button
+              variant="primary"
+              fullWidth
+              loading={loading}
+              onClick={submitStep3}
+            >
+              Save & Complete →
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {/* ── STEP 4: Complete ── */}
+      {step === 4 && (
+        <div className="text-center py-6">
+
+          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 rounded-full flex items-center justify-center text-3xl sm:text-4xl mx-auto mb-5">
+            🎉
+          </div>
+
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">
+            You're live on ServiceBook!
+          </h2>
+
+          <p className="text-sm text-gray-500 mb-6 max-w-sm mx-auto leading-relaxed">
+            Your profile is now visible to customers. Slots will be generated tonight and customers
+            can start booking you by tomorrow.
+          </p>
+
+          <div className="space-y-3 text-left bg-gray-50 rounded-xl p-5 mb-6 max-w-sm mx-auto">
+
+            {[
+              ['Profile', 'Saved ✓', 'green'],
+              ['Services', `${services.filter(s => s.categoryId).length} added ✓`, 'green'],
+              ['Availability', `${availability.filter(a => a.enabled).length} days set ✓`, 'green'],
+              ['Slots', 'Generated tonight', 'yellow'],
+            ].map(([k, v, c]) => (
+              <div
+                key={k}
+                className="flex justify-between items-center gap-4"
+              >
+                <span className="text-sm text-gray-600">
+                  {k}
+                </span>
+
+                <span
+                  className={`text-xs font-medium px-2 py-1 rounded-full text-right ${
+                    c === 'green'
+                      ? 'bg-green-100 text-green-700'
+                      : 'bg-yellow-100 text-yellow-700'
+                  }`}
+                >
+                  {v}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+
+            <Button
+              variant="outline"
+              onClick={() => router.push('/providers')}
+              className="w-full sm:w-auto"
+            >
+              View Listing
+            </Button>
+
+            <Button
+              variant="primary"
+              onClick={() => router.push('/provider/dashboard')}
+              className="w-full sm:w-auto"
+            >
+              Go to Dashboard →
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
-  );
+  </div>
+);
 }

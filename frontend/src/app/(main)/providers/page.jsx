@@ -70,75 +70,114 @@ export default function ProvidersPage() {
     : null;
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-      <div className="grid grid-cols-[280px_1fr] gap-6 items-start">
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 overflow-x-hidden">
 
-        {/* Sidebar */}
-        <ProviderFilters
-          filters={filters}
-          onChange={setFilters}
-          onApply={() => {}} // filters apply live — no button needed
-        />
+    <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6 items-start">
 
-        {/* Results */}
-        <div>
-          {/* Top bar */}
-          <div className="flex items-center justify-between mb-5">
-            <div className="flex items-center gap-2">
-              {selectedCat && (
-                <button
-                  onClick={() => setFilters((f) => ({ ...f, categoryId: null }))}
-                  className="text-xs bg-blue-50 text-blue-700 border border-blue-200 rounded-full px-3 py-1 hover:bg-blue-100"
-                >
-                  {selectedCat} ✕
-                </button>
-              )}
-              <span className="text-sm text-gray-600">
-                <span className="font-semibold text-gray-900">{filteredProviders.length}</span>{' '}
-                provider{filteredProviders.length !== 1 ? 's' : ''} available
-              </span>
-            </div>
+      {/* Sidebar */}
+      <ProviderFilters
+        filters={filters}
+        onChange={setFilters}
+        onApply={() => {}} // filters apply live — no button needed
+      />
 
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-500">Sort:</span>
-              <select
-                value={sort}
-                onChange={(e) => setSort(e.target.value)}
-                className="text-sm border border-gray-200 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+      {/* Results */}
+      <div>
+
+        {/* Top bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5">
+
+          <div className="flex flex-wrap items-center gap-2">
+
+            {selectedCat && (
+              <button
+                onClick={() =>
+                  setFilters((f) => ({
+                    ...f,
+                    categoryId: null,
+                  }))
+                }
+                className="text-xs bg-blue-50 text-blue-700 border border-blue-200 rounded-full px-3 py-1 hover:bg-blue-100"
               >
-                <option value="recommended">Recommended</option>
-                <option value="rating">Highest Rated</option>
-                <option value="pl">Price: Low to High</option>
-                <option value="ph">Price: High to Low</option>
-              </select>
-            </div>
+                {selectedCat} ✕
+              </button>
+            )}
+
+            <span className="text-sm text-gray-600">
+              <span className="font-semibold text-gray-900">
+                {filteredProviders.length}
+              </span>{' '}
+              provider{filteredProviders.length !== 1 ? 's' : ''} available
+            </span>
           </div>
 
-          {/* Grid */}
-          {filteredProviders.length === 0 ? (
-            <EmptyState
-              icon="🔍"
-              title="No providers found"
-              message="Try adjusting your filters or search term"
-              action={() => setFilters({ search: '', categoryId: null, minPrice: 0, maxPrice: 500, minRating: 0 })}
-              actionLabel="Clear all filters"
-            />
-          ) : (
-            <>
-              <div className="grid grid-cols-3 gap-4">
-                {filteredProviders.map((p) => (
-                  <ProviderCard key={p.id} provider={p} />
-                ))}
-              </div>
-              <div className="text-center mt-8">
-                <button className="border border-gray-300 text-sm text-gray-700 px-8 py-2.5 rounded-xl hover:bg-gray-50 transition-colors">
-                  Load More Providers
-                </button>
-              </div>
-            </>
-          )}
+          <div className="flex items-center gap-2 w-full sm:w-auto">
+
+            <span className="text-sm text-gray-500 shrink-0">
+              Sort:
+            </span>
+
+            <select
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+              className="flex-1 sm:flex-none text-sm border border-gray-200 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="recommended">
+                Recommended
+              </option>
+
+              <option value="rating">
+                Highest Rated
+              </option>
+
+              <option value="pl">
+                Price: Low to High
+              </option>
+
+              <option value="ph">
+                Price: High to Low
+              </option>
+            </select>
+          </div>
         </div>
+
+        {/* Grid */}
+        {filteredProviders.length === 0 ? (
+          <EmptyState
+            icon="🔍"
+            title="No providers found"
+            message="Try adjusting your filters or search term"
+            action={() =>
+              setFilters({
+                search: '',
+                categoryId: null,
+                minPrice: 0,
+                maxPrice: 500,
+                minRating: 0,
+              })
+            }
+            actionLabel="Clear all filters"
+          />
+        ) : (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+              {filteredProviders.map((p) => (
+                <ProviderCard
+                  key={p.id}
+                  provider={p}
+                />
+              ))}
+            </div>
+
+            <div className="text-center mt-8">
+              <button className="w-full sm:w-auto border border-gray-300 text-sm text-gray-700 px-8 py-2.5 rounded-xl hover:bg-gray-50 transition-colors">
+                Load More Providers
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
-  );
+  </div>
+);
 }

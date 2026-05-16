@@ -548,3 +548,17 @@
 [32mhttp[39m: ::1 - - [15/May/2026:19:25:01 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 607 "http://localhost:3000/" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36" {"service":"booking-platform-api"}
 [32minfo[39m: [AUTH] User logged in {"role":"customer","service":"booking-platform-api","userId":3}
 [32mhttp[39m: ::1 - - [15/May/2026:19:30:48 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 607 "http://localhost:3000/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36" {"service":"booking-platform-api"}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","service":"booking-platform-api","ssl":false}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","service":"booking-platform-api","ssl":false}
+[32minfo[39m: [SERVER] Running on port 3001 in development mode {"service":"booking-platform-api"}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","service":"booking-platform-api","ssl":false}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"127.0.0.1","service":"booking-platform-api","ssl":false}
+[32minfo[39m: [SERVER] Running on port 3001 in development mode {"service":"booking-platform-api"}
+[32minfo[39m: [SERVER] SIGINT received, starting graceful shutdown {"service":"booking-platform-api"}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"gateway01.ap-southeast-1.prod.aws.tidbcloud.com","service":"booking-platform-api","ssl":true}
+[32minfo[39m: [DB] Connection pool established successfully {"database":"booking_platform","host":"gateway01.ap-southeast-1.prod.aws.tidbcloud.com","service":"booking-platform-api","ssl":true}
+[32minfo[39m: [SERVER] Running on port 3001 in development mode {"service":"booking-platform-api"}
+[31merror[39m: Invalid email or password {"code":"UNAUTHORIZED","isOperational":true,"request":{"ip":"::1","method":"POST","url":"/api/v1/auth/login"},"service":"booking-platform-api","stack":"Error: Invalid email or password\n    at AppError.unauthorized (file:///C:/Users/gayat/Downloads/SLSBP/backend/src/utils/AppError.js:49:3)\n    at Object.login (file:///C:/Users/gayat/Downloads/SLSBP/backend/src/modules/auth/auth.service.js:77:40)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/gayat/Downloads/SLSBP/backend/src/modules/auth/auth.controller.js:12:18","statusCode":401}
+[32mhttp[39m: ::1 - - [16/May/2026:15:49:43 +0000] "POST /api/v1/auth/login HTTP/1.1" 401 87 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36" {"service":"booking-platform-api"}
+[32minfo[39m: [AUTH] New user registered {"city":"Pune","role":"customer","service":"booking-platform-api","userId":1}
+[32mhttp[39m: ::1 - - [16/May/2026:15:50:14 +0000] "POST /api/v1/auth/register HTTP/1.1" 201 670 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36" {"service":"booking-platform-api"}
